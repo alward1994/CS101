@@ -1,4 +1,4 @@
-function sh (){
+``` function sh (){
   console.log('=================================');
 }
 
@@ -126,3 +126,4 @@ function tk(a , b){
 
 }
 tk(arr,2);
+```
