@@ -36,7 +36,7 @@ for(let i=0;i<3;i++){
     console.log(arr);
      }
 }
-z6
+//z6
 let s="#";
 let st;
 for(let i=1;i<=5;i++){
@@ -51,14 +51,14 @@ for(let j=5;j>0;j--){
 
 //z7
 let hh=[12,43,11,27,18];
-let s="#";
-let st;
+let s2="#";
+let st2;
 for(let i=0;i<43;i++){
-  st=s.repeat(hh[i])
-  console.log(st);
+  st2=s.repeat(hh[i])
+  console.log(st2);
   }
 
-z8
+//z8
 function srd(a){
   let s=0;
   let sr=0;
@@ -76,7 +76,7 @@ for(let i=0;i<3;i++){
   pp.push(p);
 }
   srd(pp);
-z9
+//z9
 let sk=[34,1,41,22,98];
 function tt(a){
   let ss=[];
@@ -114,17 +114,17 @@ function tpt(a,b){
 tpt(ttk,2);
 
 //z11
-let arr=[24,'text',16,45,'e','PAX ROMANA'];
+let arr1=[24,'text',16,45,'e','PAX ROMANA'];
 function tk(a , b){
   let newarr=[];
-  for(let i=0;i<arr.length;i=i+1){
-    if(typeof arr[i] == 'number'){
-    newarr.push(arr[i]**b); 
+  for(let i=0;i<arr1.length;i=i+1){
+    if(typeof arr1[i] == 'number'){
+    newarr.push(arr1[i]**b); 
     console.log(newarr);
     }
   }
   return newarr;
 
 }
-tk(arr,2);
+tk(arr1,2);
 ```
