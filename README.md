@@ -10,13 +10,13 @@
 ____
 >github
 
->Abstract
+* Abstract
 ![](photo/photo4.jpg)
 
 ![](photo/photo5.jpg)
 ---
 ***
->Pattern
+* Pattern
 ![](photo/photo1.jpg)
 ![](photo/photo2.jpg)
 ![](photo/photo3.jpg)
