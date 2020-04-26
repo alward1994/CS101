@@ -22,3 +22,8 @@ ____
 ![](photo/photo2.jpg)
 ![](photo/photo1.jpg)
 ![](photo/photo3.jpg)
+
+***
+* Pattern with motion
+---
+![](photo/motion1.jpg)
