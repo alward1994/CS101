@@ -1,5 +1,6 @@
 
 // https://editor.p5js.org/alward1994/sketches/08fpWKmhY
+// Pattern with motion and sound
 let angle = 0;
 let angleInner = 0;
 let angle2 = 0;
