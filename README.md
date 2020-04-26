@@ -26,4 +26,4 @@ ____
 ***
 * Pattern with motion
 ---
-![](photo/motion1.jpg)
+![](photo/motion1.png)
