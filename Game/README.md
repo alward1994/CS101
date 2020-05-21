@@ -14,7 +14,7 @@ ____
 ***
 * game
 ---
-![](photo/g1.jpg)
+![](CS101\photo/g1.jpg)
 ![](photo/g2.jpg)
 ![](photo/g3.jpg)
 ![](photo/g4.jpg)
