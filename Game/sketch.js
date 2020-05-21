@@ -143,8 +143,8 @@ function strscr(){
   textFont(pixFont, 74, 30);
   text("GAME OVER", width/2, height/2 - 50);
 
-  fill(255, 205, 205);
-  textFont(regFont, 34, 10);
+  fill(50, 100, 205);
+  textFont(rangfont, 40, 15);
   text("Press R to restart", width/2, height/2 + 50);
   
    if(keyIsPressed && key == 'r' ){ 
@@ -164,8 +164,8 @@ function newlevel() {
   textFont(pixFont, 74, 30);
   text("newlevel", width/2, height/2 - 50);
 
-  fill(255, 205, 205);
-  textFont(regFont, 34, 10);
+  fill(50, 0, 205);
+  textFont(rangfont, 40, 15);
   text("Press x to continues", width/2, height/2 + 50);
     
    if(keyIsPressed && key == 'x' ){
@@ -220,9 +220,7 @@ function scrA(){
 pg = new Group();
  for (let i =0;i<nv*ndm/2;i++){
   p = createSprite(random(-windowWidth,-windowWidth/3), random(-windowHeight,SCENE_H+windowHeight/3));
-   p.addAnimation('normal', 'assets/km.png');
-    // v.setSpeed(random(2, 3), random(0, 360));
-  
+   p.addAnimation('normal', 'assets/km.png');  
    // p.mass=0.002;
   pg.add(p);
    }
