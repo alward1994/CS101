@@ -4,8 +4,8 @@
 * name of game :
 # Clean the city from viruses
 ---
-![](https://editor.p5js.org/alward1994/sketches/HRKzBiFNH
-)
+![](scr='https://editor.p5js.org/alward1994/sketches/HRKzBiFNH
+')
 ---
 ***
 ____
@@ -14,7 +14,7 @@ ____
 ***
 * game
 ---
-![](CS101\photo/g1.jpg)
+![](photo/g1.jpg)
 ![](photo/g2.jpg)
 ![](photo/g3.jpg)
 ![](photo/g4.jpg)
