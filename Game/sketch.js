@@ -21,10 +21,11 @@ let vl=2;
 let acceleration;
 let score=0;
 let collisionCount = 0;
-
+let rangfont;
 function preload(){
   song= loadSound('assets/coffin.mp3');
   pixFont = loadFont('assets/BungeeShade-Regular.ttf'); 
+  rangfont = loadFont('assets/Ranga-Bold.ttf');
   regFont = loadFont('assets/Jost.ttf');
   vImag = loadImage("assets/v1.png");
    manImag = loadImage("assets/man.png");
@@ -92,11 +93,11 @@ function allscr(){
     mn.overlap(vg, collect);
     showScores(); 
          boox();
-    if (ndm-nv == 0){
+    if (ndm-nv <= 0 || ndm <= nv || ndm == 0 || ndm <=w-w/4){
          gameOver1(); 
     
     }
-  if(nv <= 0){
+  if(nv <= 0 || ndm-nv > nv){
      newlevel();
      }
 }
@@ -104,14 +105,22 @@ function allscr(){
 
 // ------------------------------------------scrver
 function strscr(){
-  background(20,150,200);
-  fill(255, 171, 171);
-  textFont(pixFont, 74, 30);
+  background(20,0,200);
+  fill(0, 255, 0);
+  textFont(pixFont, 45, 30);
+  text("Clean the city from viruses", width/2, height/2-200);
   text("WELLCOME", width/2, height/2 - 50);
 
   fill(255, 205, 205);
   textFont(regFont, 34, 10);
   text("click to start and Press S", width/2, height/2 + 50);
+  fill(50, 100, 205);
+  textFont(rangfont, 40, 15);
+  text("Win when you kill all viruses or when heart more than viruses ", width/2, height/2 + 120);
+
+  text("Game over when viruses kill more than halh of homes or when heart = 0", width/2, height/2 + 200);
+
+
   if(keyIsPressed && key == 's'){ 
      scr=1;}
 //   push();
@@ -172,15 +181,15 @@ function scrver(){
   vg= new Group();
   for(let i=0;i<nv;i++){
     v=createSprite(random(0, SCENE_W), random(0,  SCENE_H-windowHeight/2));
-    v.addAnimation('normal', 'assets/v'+floor(random(0, 6))+'.png');
-    // v.setSpeed(random(2, 3), random(0, 360));
+    v.addAnimation('normal', 'assets/v'+floor(random(0, 7))+'.png');
     // v.scale = random(0.5, 0.7);
     // v.mass = v.scale;
     v.scale = 0.5;
     v.mass=0.05;
     v.setCollider('circle', 0, 0, 80);
     vg.add(v); 
-    v.setSpeed(0.5, random(0, 270));
+    v.setSpeed(random(2, 3), random(0, 360));
+    // v.setSpeed(0.5, random(0, 270));
   
   }
 }
@@ -189,7 +198,7 @@ function scrdm(){
  dmg = new Group();
  for (let i =0;i<ndm;i++){
   dm = createSprite(random(0, SCENE_W), random(0,  SCENE_H-windowHeight/2));
-   dm.addAnimation('normal', 'assets/dom'+floor(random(0, 2))+'.png');
+   dm.addAnimation('normal', 'assets/dom'+floor(random(0, 3))+'.png');
    dm.mass=0.002;
   dmg.add(dm);
    }
@@ -199,7 +208,9 @@ function scrdm(){
 function scrmn(){
 mn =createSprite(400, 200, 50, 100);
   let s = mn.addAnimation('floating', 'assets/s1.png', 'assets/s2.png' , 'assets/s3.png', 'assets/s4.png');
-  mn.mass=1;
+  // mn.mass=0.2;
+  mn.setSpeed(5);
+
   s.offY=18;
  
 }
@@ -210,7 +221,9 @@ pg = new Group();
  for (let i =0;i<nv*ndm/2;i++){
   p = createSprite(random(-windowWidth,-windowWidth/3), random(-windowHeight,SCENE_H+windowHeight/3));
    p.addAnimation('normal', 'assets/km.png');
-   p.mass=0.002;
+    // v.setSpeed(random(2, 3), random(0, 360));
+  
+   // p.mass=0.002;
   pg.add(p);
    }
 }
