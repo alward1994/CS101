@@ -3,7 +3,9 @@
 * 21/05/2020
 * name of game :
 # Clean the city from viruses
-
+---
+![](https://editor.p5js.org/alward1994/sketches/HRKzBiFNH
+)
 ---
 ***
 ____
@@ -18,6 +20,5 @@ ____
 ![](photo/g4.jpg)
 ![](photo/g5.jpg)
 ![](photo/g6.jpg)
-
 ***
 
