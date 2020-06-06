@@ -1,15 +1,13 @@
-let button;
+let button0;
+let button1;
+let button2;
+let button3;
 let v;
 let vg;
 let dm;
 let dmg;
 let mn;
 let mng;
-let p;
-let pg;
-let km;
-let kmg;
-// let MARGIN = 40;
 let SCENE_W = 12000;
 let SCENE_H = 12000;
 let ndm=200;
@@ -22,37 +20,34 @@ let acceleration;
 let score=0;
 let collisionCount = 0;
 let rangfont;
+let pixFont;
+let regFont;
+let vImag;
+let manImag;
+
 function preload(){
   song= loadSound('assets/coffin.mp3');
   pixFont = loadFont('assets/BungeeShade-Regular.ttf'); 
   rangfont = loadFont('assets/Ranga-Bold.ttf');
   regFont = loadFont('assets/Jost.ttf');
   vImag = loadImage("assets/v1.png");
-   manImag = loadImage("assets/man.png");
+  manImag = loadImage("assets/man.png");
 }
-// function mousePressed() {
-//   if (song.isPlaying()) { 
-//     song.pause(); 
-//   } else {
-//     song.play();
-//   }
-// }
-
-
 
 function setup() {
 
   createCanvas(windowWidth, windowHeight);
   textSize(40);
   textAlign(CENTER, CENTER);
-  // song.loop();
-  // rectMode(CENTER);
+
   scen();
-   
-  
+  button0 = createButton(' click to start play ');
+  button1 = createButton('Music');
+  button2 = createButton(' click to restart ');
+  button3 = createButton(' click to start newlevel ');
+
 }
 function draw() {
-
      dw();
 }
 
@@ -60,18 +55,17 @@ function scen(){
   scrdm();
   scrmn();
   scrver();
-  
 }
 
 function dw(){
-
-  if(scr == 0){strscr();}
+  if(scr == 0){strscr();  }
   else if(scr == 1){
     clear();
+   button0.remove();
    allscr();
   }
   else if(scr==2){
-    gameOver1(); 
+    gameOver(); 
   }	
   else if(scr == 3){
        newlevel();
@@ -80,21 +74,23 @@ function dw(){
 
 function allscr(){
   mncamera();
-   vdraw();
-   dmdraw();
+  vdraw();
+  dmdraw();
   noStroke();
   fill(0, 0, 0, 20);
   ellipse(mn.position.x, mn.position.y+90, 80, 30);
-  
   drawSprite(mn);
+          farm(-100,-100,SCENE_W, SCENE_H,20,'red');
   camera.off();
 
     vg.overlap(dmg, collectdm);
     mn.overlap(vg, collect);
     showScores(); 
+    btn(button1, 400,40 , "30px", 'red', pixFont, changeBG );
          boox();
+         farm(0,0,windowWidth, windowHeight,8,'rgb(0,255,0)');
     if (ndm-nv <= 0 || ndm <= nv || ndm == 0 || ndm <=w-w/4){
-         gameOver1(); 
+         gameOver(); 
     
     }
   if(nv <= 0 || ndm-nv > nv){
@@ -102,78 +98,83 @@ function allscr(){
      }
 }
  
-
+// random(0,255),random(0,255),random(0,255)
 // ------------------------------------------scrver
 function strscr(){
-  background(20,0,200);
-  fill(0, 255, 0);
-  textFont(pixFont, 45, 30);
-  text("Clean the city from viruses", width/2, height/2-200);
-  text("WELLCOME", width/2, height/2 - 50);
-
+  background(random(40,55),random(0,50),random(0,255));
+  fill(255, 0,255);
+  textFont(pixFont,width/20);
+  text("Clean the city of viruses", width/2, height/6);
+  fill(255, 255, 0);
+  textFont(pixFont,width/9);
+  text("WELLCOME", width/2, height/3);
   fill(255, 205, 205);
-  textFont(regFont, 34, 10);
-  text("click to start and Press S", width/2, height/2 + 50);
+  textFont(regFont, width/20);
+  text("click to start and Press S", width/2, height/2 );
   fill(50, 100, 205);
-  textFont(rangfont, 40, 15);
-  text("Win when you kill all viruses or when heart more than viruses ", width/2, height/2 + 120);
-
-  text("Game over when viruses kill more than halh of homes or when heart = 0", width/2, height/2 + 200);
-
-
+  textFont(rangfont,width/22);
+  text("Win: when you kill all viruses or when heart more than viruses ", width/2, height-height/3);
+  textFont(rangfont,width/25);
+  text("Game over: when viruses kill more than half of homes or when heart = 0", width/2, height-height/6);
   if(keyIsPressed && key == 's'){ 
-     scr=1;}
-//   push();
-//   button = createButton('"click to start and Press S  ');
-//   button.position(width/2-200, height/2 + 50);
-//   button.style("font-family", pixFont);
-//   button.style("color", 'red');
-//   button.style("font-size", "40px");   
-//   button.mousePressed(changeScr );
-//   pop();
-  
+     scr=1;} 
+  push();
+    btn(button0, 0 ,0 ,"40px" , 'red', rangfont,changeScr);
+  pop();  
 }
 
-  function gameOver1() {
+  function gameOver() {
   vg.removeSprites();
   dmg.removeSprites();
   mn.remove();
+  button1.remove();
   background(255, 33, 33);
-  fill(255, 171, 171);
-  textFont(pixFont, 74, 30);
+  fill(0, 50, 50);
+  textFont(pixFont, width/15);
   text("GAME OVER", width/2, height/2 - 50);
 
   fill(50, 100, 205);
-  textFont(rangfont, 40, 15);
-  text("Press R to restart", width/2, height/2 + 50);
-  
-   if(keyIsPressed && key == 'r' ){ 
+  textFont(rangfont, width/20);
+  text("Press R to restart", width/2, height/2 + 50);  
+   if(keyIsPressed && key == 'r' ){
+      song.play();
       reset();
-     scr=1;}
-                                                     
+      button2.remove();
+     scr=1;}  
+    push();
+    btn(button2, 0 ,0 ,"40px" , 'red', rangfont,reset);
+    pop(); 
+    if (song.isPlaying()) { 
+    song.pause(); 
+    } 
 }
-
- 
 
 function newlevel() {
   vg.removeSprites();
   dmg.removeSprites();
   mn.remove();
+  button1.remove();
   background(0, 100, 80);
   fill(255, 171, 171);
-  textFont(pixFont, 74, 30);
+  textFont(pixFont, width/20);
   text("newlevel", width/2, height/2 - 50);
 
   fill(50, 0, 205);
-  textFont(rangfont, 40, 15);
+  textFont(rangfont,width/20);
   text("Press x to continues", width/2, height/2 + 50);
     
    if(keyIsPressed && key == 'x' ){
+     song.play();
      newlevel1();
+     button3.remove();
          scr=1;
      }
-
- 
+    push();
+    btn(button3, 0 ,0 ,"40px" , 'red', rangfont,newlevel1);
+    pop();
+  if (song.isPlaying()) { 
+    song.pause(); 
+    } 
 }
 
 
@@ -215,28 +216,6 @@ mn =createSprite(400, 200, 50, 100);
  
 }
 
-// ------------------------------------scrA
-function scrA(){
-pg = new Group();
- for (let i =0;i<nv*ndm/2;i++){
-  p = createSprite(random(-windowWidth,-windowWidth/3), random(-windowHeight,SCENE_H+windowHeight/3));
-   p.addAnimation('normal', 'assets/km.png');  
-   // p.mass=0.002;
-  pg.add(p);
-   }
-}
-// ------------------------------------scrB
-function scrB(){
-kmg = new Group();
- for (let i =0;i<nv/2;i++){
-  km = createSprite(random(-windowWidth, SCENE_W+windowWidth), random(windowHeight+SCENE_H,SCENE_H));
-   km.addAnimation('normal', 'assets/g2.png');
-   km.mass=0.002;
-  kmg.add(km);
-   }
-}
-// ------------------------------------------------------!!!!!!end setup
-
 // ------------------------------------draw
 function mncamera(){
   background(220);
@@ -258,9 +237,7 @@ function mncamera(){
   if(mn.position.x > SCENE_W)
     mn.position.x = SCENE_W;
   if(mn.position.y > SCENE_H)
-    mn.position.y = SCENE_H;
-  
-    
+    mn.position.y = SCENE_H;   
 }
   
 // -----------------------------dmdraw
@@ -272,31 +249,11 @@ function vdraw(){
           drawSprites(vg);
    // boox();
 }
-// ------------------------------adraw
-function adraw(){
- drawSprites(pg);
-  
-}
-// ------------------------------bdraw
-function bdraw(){
-drawSprites(kmg);
-}
 
 //   -------------------------------------
 function callbackFunc() {
 collisionCount= collisionCount + 1;
 }
-
-function bou(s1,s2){
-   s1.bounce(s2, callbackFunc);
-   text(collisionCount, 30, 30);
-}
-function ov(s1,s2){
-if(s1.overlap(s2)){
-    s1.displace(s2);
-  }
-}
-
 function collectdm(collector, collected)
 {
 
@@ -341,10 +298,12 @@ function boox(){
 }
 
 
-function flashLight() {
+function farm(a0,b0,a,b,strW,stCr) {
   push();
-  fill(255, 255, 255);
-  rect(0, 0, windowWidth, windowHeight);
+  strokeWeight(strW);
+  stroke(stCr);
+  noFill();
+  rect(a0,b0,a, b);
   pop();
 }
 
@@ -352,14 +311,24 @@ function flashLight() {
 function reset(){
 	 nv=w;
   	 ndm=2*w;
-   
-     scen();
+     button2.remove();
+     button2 = createButton(' click to restart ');
+     button1 = createButton('Music');
+     btn(button1, 400,40 , "30px", 'red', pixFont, changeBG );
+        song.play();
+
+      scen();
+  
 
 }
 function newlevel1(){
-	 nv =w+20;
-  	ndm =2*w+10;
-  
+    nv =w+20;
+  	ndm =2*w+40;
+    button3.remove();
+    button3 = createButton(' click to start newlevel ');
+    button1 = createButton('Music');
+    btn(button1, 400,40 , "30px", 'red', pixFont, changeBG );
+    song.play();
         scen();
 }
 
@@ -385,50 +354,30 @@ function showScores() {
   fill(255, 255, 200);
   image(manImag, 270, 43, 30, 30)
   text(ndm, 340, 50);
-  push();
- 
-   button = createButton('Music');
-// button.size(120,80);
-   // button.addImage(vImag);
-  button.position(400, 40);
-  button.style("font-family", pixFont);
-  button.style("color", 'red');
-  button.style("font-size", "30px");   button.mousePressed(changeBG);
-
-  pop();
+  
 }
 function changeBG() {
   if (song.isPlaying()) { 
     song.pause(); 
-    } else {
+    } else  {
       song.play();
   }
-
 }
+
 function changeScr() {
+  
   if(scr == 0){
-	scr=1;
-	}else if(scr == 2){
-	scr=1;
-	}else if(scr == 3){
+    song.play();
 	scr=1;
 	}
 }
-// function mousePressed(){
-//    if (song.isPlaying()) { 
-//     song.pause(); 
-//   } else {
-//     song.play();
-// 	}
-// 	// if(scr == 0){
-// 	// scr=1
-// 	// }else if(scr == 2){
-// 	// scr=0
-// 	// }
-// 	// else if(scr == 4){
-// 	// scr=3
-// 	// }
-// 	// else if(scr == 3){
-// 	// scr=1
-// 	// }
-// }
+
+function btn(buttond, PX ,PY, SF, Cr,Ff, f){
+
+  buttond.position(PX, PY);
+  buttond.style("font-family", Ff);
+  buttond.style("color", Cr);
+  buttond.style("font-size", SF);
+  buttond.mousePressed(f);
+  
+}
