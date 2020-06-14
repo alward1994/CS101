@@ -171,17 +171,13 @@ function newlevel() {
   fill(50, 0, 205);
   textFont(rangfont,width/20);
   text("Press x to continues", width/2, height/2 + w);
-    
-   if(keyIsPressed && key == 'x' ){
-     scr=1;
-     song.play();
-     button3.remove();
-     newlevel1();
-     
-     }
     push();
     btn(button3, 0 ,0 ,"40px" , 'red', rangfont,newlevel1);
-    pop();
+    pop(); 
+   if(keyIsPressed && key == 'x' ){
+     newlevel1();     
+     }
+
   if (song.isPlaying()) { 
     song.pause(); 
     } 
@@ -199,7 +195,7 @@ function scrver(){
     v.mass=0.01;
     v.setCollider('circle', 0, 0, 80);
     vg.add(v); 
-    v.setSpeed(random(0, 0.5), random(0, 360));
+    v.setSpeed(random(0.1,0.5), random(0, 360));
    
   
   }
@@ -332,6 +328,7 @@ function newlevel1(){
     song.play();
   
         scen();
+        scr=1;
  
 
 }
