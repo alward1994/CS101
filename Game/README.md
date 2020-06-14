@@ -1,5 +1,5 @@
 # Game
-# **By Alward Abdulmajed**
+# **By Alward Abdulmaged**
 * 21/05/2020
 * name of game :
 # Clean the city from viruses
